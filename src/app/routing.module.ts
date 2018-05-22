@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { InitComponent } from './init/init.component';
-import { BuilderComponent } from './builder/builder.component';
+import { ViewdbComponent } from './viewdb/viewdb.component';
+import { AddentriesComponent } from './addentries/addentries.component';
 
 const appRoutes: Routes = [
     {
@@ -11,8 +12,8 @@ const appRoutes: Routes = [
         pathMatch: 'full'
     },
     { path: 'init', component: InitComponent },
-    { path: 'builder#', redirectTo: 'builder' },
-    { path: 'builder', component: BuilderComponent },
+    { path: 'viewdb', component: ViewdbComponent },
+    { path: 'addentries', component: AddentriesComponent }
 
 ];
 

@@ -6,22 +6,28 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { InitComponent } from './init/init.component';
 import { AppRoutingModule } from './routing.module';
-import { BuilderComponent } from './builder/builder.component';
+import { FormsModule } from '@angular/forms';
+import { TokenServiceService } from './token-service.service';
+import { ViewdbComponent } from './viewdb/viewdb.component';
+import { AddentriesComponent } from './addentries/addentries.component';
+import { DbconnectionService } from './dbconnection.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     InitComponent,
-    BuilderComponent
+    ViewdbComponent,
+    AddentriesComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
      NgbModule.forRoot(),
-     HttpClientModule
+     HttpClientModule,
+     FormsModule
   ],
-  providers: [],
+  providers: [TokenServiceService, DbconnectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

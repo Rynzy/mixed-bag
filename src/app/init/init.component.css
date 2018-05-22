@@ -1,0 +1,13 @@
+.margin {margin-bottom: 40px;}
+.top{
+    background-color: #84bd00;
+    color: #ffffff;
+}
+.mid {
+    background-color: #000000;
+    color: #ffffff;
+}
+.container-fluid {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
