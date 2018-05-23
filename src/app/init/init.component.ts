@@ -16,7 +16,7 @@ export class InitComponent  implements OnInit {
   redirect() {
     const auth = 'https://accounts.spotify.com/authorize';
     const clientId = '1e3442832b6b43458d2599e328fac5d9';
-    const redirectUri = 'http://localhost:3000/addentries';
+    const redirectUri = 'https://powerful-retreat-20945.herokuapp.com/addentries';
     const scopes = [
       'user-top-read'
     ];
