@@ -1,10 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TokenServiceService } from './token-service.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: `./app.component.html`,
-  styles: [`.active {background-color:#84bd00;}
+    selector: 'app-root',
+    templateUrl: `./app.component.html`,
+    styles: [`.active {background-color:#84bd00;}
 
   nav {
       list-style-type: none;
@@ -31,12 +31,12 @@ import { TokenServiceService } from './token-service.service';
   }`]
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+    title = 'app';
 
-  constructor(private tokenService: TokenServiceService) { }
+    constructor(private tokenService: TokenServiceService) { }
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
+    }
 
 }

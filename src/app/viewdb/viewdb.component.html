@@ -1,12 +1,17 @@
-<button (click)="search()">Populate</button>
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-  <ngb-panel *ngFor="let myObj of artists">
+  <ngb-panel *ngFor="let artist of artists">
       <ng-template ngbPanelTitle>
-          <span>{{myObj.name}}</span>
+          <span>{{artist.name}}</span>
       </ng-template>
       <ng-template ngbPanelContent>
-          <button (click)="delete(myObj.id)">Delete from db</button>
-          
+          <button class="btn btn-danger" (click) = "deleteArtist(artist.id)">Delete artist</button>
+              <legend>Albums:</legend>
+          <ul class="list-group">
+            <ng-container *ngFor="let album of albums">
+                <li class="list-group-item" *ngIf="album.artist == artist.spotifyid">{{album.name}} <button class="btn btn-danger" (click) = "deleteAlbum(album.id)">Delete album</button></li>
+            </ng-container>
+        </ul>
+
       </ng-template>
       
   </ngb-panel>

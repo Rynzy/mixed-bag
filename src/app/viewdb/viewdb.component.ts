@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {DbconnectionService} from '../dbconnection.service';
-import {Artist} from '../Artist';
+import { DbconnectionService } from '../dbconnection.service';
+import { Artist } from '../Artist';
+import { Album } from '../Album';
+import { ArtistAlbum } from '../ArtistAlbum';
 
 @Component({
   selector: 'app-viewdb',
@@ -9,18 +11,33 @@ import {Artist} from '../Artist';
 })
 export class ViewdbComponent implements OnInit {
   artists: Artist[];
+  albums: Album[];
   constructor(private dbConnection: DbconnectionService) { }
 
   ngOnInit() {
-   this.dbConnection.getAllTodo().subscribe((artists) => {
+    this.updateArtists();
+    this.updateAlbums();
+  }
+
+  updateArtists() {
+    this.dbConnection.getAllArtists().subscribe((artists) => {
       this.artists = artists as Artist[];
     });
   }
 
-  search() {
-    this.dbConnection.getAllTodo().subscribe((artists) => {
-      this.artists = artists as Artist[];
+  updateAlbums() {
+    this.dbConnection.getAllAlbums().subscribe((albums) => {
+      this.albums = albums as Album[];
     });
   }
 
+  deleteAlbum(id: number) {
+    this.dbConnection.deleteAlbum(id);
+    this.updateAlbums();
+  }
+
+  deleteArtist(id: number) {
+    this.dbConnection.deleteArtist(id);
+    this.updateArtists();
+  }
 }

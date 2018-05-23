@@ -12,7 +12,7 @@ export class TokenServiceService {
   init() {
     const auth = 'https://accounts.spotify.com/authorize';
     const clientId = '1e3442832b6b43458d2599e328fac5d9';
-    const redirectUri = 'http://localhost:4200/';
+    const redirectUri = 'http://localhost:3000/';
     const scopes = [
       'user-top-read'
     ];

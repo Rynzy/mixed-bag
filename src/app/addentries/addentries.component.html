@@ -1,16 +1,15 @@
 <label for="searchBar" class="col-sm-2 col-form-label">Search artists: </label>
-<input id="searchBar"  (keyup)="onKey($event)">
+<input id="searchBar" (keyup)="onKey($event)">
 
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-    <ngb-panel *ngFor="let myObj of values">
+    <ngb-panel *ngFor="let artist of artists">
         <ng-template ngbPanelTitle>
-            <span>{{myObj.name}}</span>
+            <span>{{artist.name}}</span>
         </ng-template>
         <ng-template ngbPanelContent>
-            <a href={{myObj.external_urls.spotify}} target="_blank">Spotify link</a>
-            <button (click)="addToDb(myObj)">Add artist to db</button>
-            
+            <a href={{artist.external_urls.spotify}} target="_blank">Spotify link</a>
+            <button class = "btn-success" (click)="addToDb(artist)">Add artist to db</button>
+            <button class = "btn-success"  (click)="addAlbums()">Add albums</button>
         </ng-template>
-        
     </ngb-panel>
 </ngb-accordion>

@@ -16,11 +16,9 @@ interface Artist {
   styleUrls: ['./addentries.component.css']
 })
 export class AddentriesComponent implements OnInit {
-
-  artists: {};
-  values = '';
+  artists = '';
   isInDb = [];
-  basat = '';
+  albums = [];
 
   constructor(private http: HttpClient, private tokenService: TokenServiceService, private dbConnection: DbconnectionService) { }
 
@@ -34,44 +32,39 @@ export class AddentriesComponent implements OnInit {
   search(link: string) {
     this.tokenService.artistAlbums(link).subscribe(
       data => {
-        this.basat = data;
-        console.log(data);
+        this.albums = data['items'];
       }
     );
 
-    console.log(this.basat);
   }
-
-  print() {
-    console.log(this.artists['artists'].items);
-  }
-
-
 
   onKey(event: any) {
     this.tokenService.searchArtist(event.target.value).subscribe(
       data => {
-        console.log(data);
-        this.values = data['artists'].items;
+        this.artists = data['artists'].items;
       }
     );
-    console.log(this.values);
-
   }
 
 
+  addAlbums() {
+    if (this.albums.length > 0) {
+      this.dbConnection.insertAlbums(this.albums);
+      this.albums = [];
+    } else {
+      alert('There are no albums to add, arists isnt added yet or the albums are alrady in the database.');
+    }
+  }
   addToDb(obj) {
     this.dbConnection.getById(obj.id).subscribe(data => {
       this.isInDb = data;
       if (this.isInDb.length <= 0) {
-        this.dbConnection.insertShit(obj);
+        this.dbConnection.insertArtist(obj);
+        this.search(obj.id);
       } else {
         alert(obj.name + ' is already in the database.');
       }
     });
-
-
-
   }
 
 }

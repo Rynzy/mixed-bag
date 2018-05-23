@@ -7,15 +7,16 @@ export class DbconnectionService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTodo(): Observable<any> {
+  getAllArtists(): Observable<any> {
     return this.http.get('/api/artists');
-
   }
 
-  insertShit(basa) {
+  getAllAlbums(): Observable<any> {
+    return this.http.get('/api/artists/albums');
+  }
+
+  insertArtist(basa) {
     this.http.post('/api/artists', {
-      title: 'foo',
-      body: 'bar',
       name: basa.name,
       spotifyid: basa.id
     })
@@ -26,7 +27,25 @@ export class DbconnectionService {
           }
         },
         err => {
-          console.log('Error occured');
+          console.log('Error');
+        }
+      );
+  }
+
+  insertAlbums(albums) {
+    this.http.post('/api/artists/albums', {
+      title: 'foo',
+      body: 'bar',
+      package: albums
+    })
+      .subscribe(
+        ress => {
+          if (ress) {
+            alert(' Albums added to database');
+          }
+        },
+        err => {
+          console.log('Error');
         }
       );
   }
@@ -37,5 +56,36 @@ export class DbconnectionService {
     return this.http.get(`/api/artists/single`, { params: params });
   }
 
+  deleteAlbum(id) {
+    let params: HttpParams = new HttpParams();
+    params = params.set('id', id);
+    this.http.delete('/api/artists/albums', { params: params }).subscribe(
+      ress => {
+        if (ress) {
+          alert('Album deleted.');
+        }
+      },
+      err => {
+        console.log('Error');
+      }
+    );
+  }
+
+  deleteArtist(id) {
+    let params: HttpParams = new HttpParams();
+    params = params.set('id', id);
+    this.http.delete('/api/artists', { params: params }).subscribe(
+      ress => {
+        if (ress) {
+          alert('Artist deleted.');
+        }
+      },
+      err => {
+        console.log('Error');
+      }
+    );
+  }
 }
+
+
 
