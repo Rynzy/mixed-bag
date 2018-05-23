@@ -20,6 +20,6 @@ app.post('/artists', function(req, res) {
   res.send(req.body);
 });
  
-const port = process.env.PORT || '3000';  //port setting
+const port = process.env.PORT || '8080';  //port setting
 app.set('port', port);
 app.listen(port, ()=> console.log(`Listening at localhost:${port}`));
